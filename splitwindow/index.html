@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Two Page</title>
+        <style>
+        body {
+            display: grid;
+            grid-auto-flow: row;
+            grid-template-columns: 1fr 1fr;
+            height: 100vh;
+        }
+        #one, #two {
+            height: 100%;
+            width: 100%;
+        }
+        iframe {
+            height: 100%;
+            width: 100%;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="one">
+            <iframe src="http://pi-address:8082/" height="100vh"></iframe>
+        </div>
+        <div id="two">
+            <iframe src="localhost:8080/" height="100vh"></iframe>
+        </div>
+    </body>
+</html>
