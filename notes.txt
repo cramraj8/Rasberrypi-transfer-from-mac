@@ -1,0 +1,48 @@
+Thermal Imaging
+
+
+raspistill
+
+http://pi-address:8082/
+
+Video streaming RGB
+https://github.com/waveform80/pistreaming
+
+ws4py
+https://ws4py.readthedocs.io/en/latest/
+
+websocket installation
+https://github.com/Lawouach/WebSocket-for-Python
+
+Codes for thermal and RGB
+https://drive.google.com/open?id=1npnjvINYR-7pY_sF_3hIT7sqjLPgZwsV
+
+Thermal Camera pin allocation
+https://learn.sparkfun.com/tutorials/flir-lepton-hookup-guide/all
+
+RGB Camera command line in raspberry pi
+https://www.raspberrypi.org/documentation/raspbian/applications
+
+jpicview img1.png
+
+
+https://www.hackster.io/mjrobot/video-streaming-web-server-ef11e3
+
+Sample web application with image upload and image processing in GitHub
+https://github.com/gxercavins/image-api
+
+
+raspberry pi RGB camera V2 specs
+https://randomnerdtutorials.com/guide-to-raspberry-pi-camera-v2-module/
+
+advanced PI camera documentation
+https://picamera.readthedocs.io/en/latest/recipes2.html
+
+Matplotlib interactive mode
+https://matplotlib.org/faq/usage_faq.html
+
+metrics implementation
+- mutual inför
+- https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mutual_info_score.html
+- entropy
+- http://scipy.github.io/devdocs/generated/scipy.stats.entropy.html
