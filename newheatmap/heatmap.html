@@ -1,0 +1,107 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Lepton Web UI</title>
+		<script src="simpleheat.js"></script>
+		<script type="text/javascript">
+
+			var imageData = [[]];
+			var segment_count = 0;
+
+			var loading = false;
+			
+			function resizeMatrix(matrix) {
+				var newMatrix = []
+				var rows = matrix.length
+				var columns = matrix[0].length
+				for (var i = 0; i < rows; i ++) {
+					var row = []
+					for (var j = 0; j < columns; j++) {
+						row.push(matrix[i][j])
+						row.push(matrix[i][j])
+						row.push(matrix[i][j])
+						row.push(matrix[i][j])
+					}
+					newMatrix.push(row)
+					newMatrix.push(row)
+					newMatrix.push(row)
+					newMatrix.push(row)
+				}
+				console.log(newMatrix.length, newMatrix[0].length)
+				return newMatrix
+			}
+
+			function reformatData(data) {
+				var output = []
+				var rows = data.length
+				var columns = data[0].length
+				for (i = 0; i < rows; i++) {
+					for (j = 0; j < columns; j++) {
+						output.push([j, i, data[i][j] / 255])
+					}
+				}
+				return output
+			}
+			function drawImage() {
+				var canvas = document.getElementById("leptonCanvas");
+				var ctx = canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				var outputData = reformatData(resizeMatrix(imageData))
+				var heat = simpleheat('leptonCanvas')
+				heat.clear()
+				heat.radius(1, 0)
+				heat.data(outputData)
+				heat.max(1)
+				heat.draw()
+				// document.getElementById('matrix').innerHTML = JSON.stringify(outputData)
+				// simpleheat('leptonCanvas').data(outputData).draw();
+				
+			}
+
+			function loadImage() {
+
+				if(loading) {
+					return;
+				}
+
+				loading = true;
+
+				var resetTimer = setTimeout(function() { loading = false; }, 5000);
+
+				var xhttp = new XMLHttpRequest();
+
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						var result = JSON.parse(this.responseText);
+						if(!result.data) {
+							return;
+						}
+						window.imageData = result.data;
+						window.segment_count = result.segment_count;
+
+						drawImage();			
+								
+						clearTimeout(resetTimer);
+						loading = false;
+					}
+				};				
+				xhttp.open("GET", "lepton.json", true);
+				xhttp.send();
+			}
+
+			function init() {
+				setInterval(loadImage, 2000);
+				loadImage();
+			}
+		</script>
+	</head>
+
+	<body onload="init();">
+	<canvas id="leptonCanvas" width="640" height="480" style="border:1px solid #999;">
+	</canvas>
+	<div id="imageValues"></div>
+	<div id="matrix"></div>
+	</body>
+</html>
+
